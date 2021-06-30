@@ -8,12 +8,19 @@ Pre-requisite
 Make sure mongod up & runnig on defsult port 27017 before you start the spring service.
 
 Services available:
+
 MediaService:
-    1. Get All Genre (get): /genre
-    2. Get All Artist (get): /artist
-    3. Get All Albums (get): /albums
+    1. Get All Genre (get): /api/genre
+    2. Create Genre (post): /api/genre
+    3. Update Genre (put): /api/genre
+    4. Delete Genre (delete): /api/genre
+    5. Play Media (Get): api/media/play/<isbn>
+        Request Header: user_id: value
+    6. Get All Artist (get): /artist
+    7. Get All Albums (get): /albums
 
 UserService:
     1. Get users (get)
-    2. Get user by user_name (get) /user?username=gcamilla0 
-    3. isPremium (get) /user/isPremium?id=38-823-9061
+    2. Get user by id (get) /api/users/user/<userid> 
+    3. isPremium (get) /api/users/user/ispremium
+        Request Header: user_id: value

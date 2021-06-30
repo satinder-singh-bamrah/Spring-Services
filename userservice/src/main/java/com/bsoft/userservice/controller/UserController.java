@@ -10,28 +10,32 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/users")
 public class UserController {
     @Autowired
     private UserRespository respository;
 
-    @GetMapping("/users")
+    @GetMapping("/all")
     public List<User> getUsers(){
         return respository.findAll();
     }
 
-    @GetMapping("/user")
+    @GetMapping("/user/{id}")
     @ResponseBody
-    Optional<User> getUserByUserName(@RequestParam String username) {
-        Optional<User> opt = respository.getUserByUserName(username);
+    Optional<User> getUserByUserName(@PathVariable("id") String userid) {
+        System.out.printf("Find User with Name: %s\n", userid);
+        Optional<User> opt = respository.getUserById(userid);
         return opt;
     }
 
-    @GetMapping("/user/isPremium")
-    public Boolean isPremium(@RequestParam String id) {
-        Optional<User> opt = respository.getUserById(id);
+    @GetMapping("/user/ispremium")
+    public Boolean isPremium(@RequestHeader("user_id") String userId) {
+        System.out.printf("Find User with ID: %s\n", userId);
+        Optional<User> opt = respository.getUserById(userId);
         Boolean isPremium = false;
         if (opt.isPresent()) {
-            if (opt.get().getUser_type() == 1) isPremium = true;
+            System.out.println("Check if Premium");
+            isPremium = opt.get().getIs_premium();
         }
         return isPremium;
     }

@@ -20,6 +20,7 @@ public class User {
     private String first_name;
     private String last_name;
     private String email;
-    private int user_type;
+    private Boolean is_premium;
+    private Boolean is_admin;
     private String gender;
 }

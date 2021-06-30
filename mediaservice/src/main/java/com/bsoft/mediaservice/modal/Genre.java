@@ -16,4 +16,12 @@ public class Genre {
     private ObjectId _id;
     private int id;
     private String genre;
+
+    public Genre() {
+    }
+
+    public Genre(int id, String genre) {
+        this.id = id;
+        this.genre = genre;
+    }
 }
